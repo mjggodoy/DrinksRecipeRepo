@@ -40,7 +40,7 @@ const RecipeProvider = (props) => {
 
    return (
     <RecipeContext.Provider
-        value={{saveSearch, retrieveDataErrorSave}}
+        value={{recipe, saveSearch, retrieveDataErrorSave}}
     >
         {props.children}
     </RecipeContext.Provider>

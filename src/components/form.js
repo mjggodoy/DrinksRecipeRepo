@@ -12,7 +12,6 @@ const Form = () => {
     });
     
     const saveDataFromForm = e => {
-        console.log(e.target.name, e.target.value);
         saveSearchbyUser(
             {...searchByUser, [e.target.name]: e.target.value});
     }
@@ -43,9 +42,9 @@ const Form = () => {
                         onChange = {saveDataFromForm}
                     >
                         <option value="">--Select a category--</option>
-                        {category.map((key,value) => {
+                        {category.map((category) => {
                             return(
-                                <option key={key.strCategory} value={key.strCategory}>{key.strCategory}</option>
+                                <option key={category.strCategory} value={category.strCategory}>{category.strCategory}</option>
                             );
                         })}
                     </select>
