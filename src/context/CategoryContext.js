@@ -1,6 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react';
 import axios from 'axios';
-
 export const CategoryContext = createContext();
 
 const CategoryProvider = (props) => {
@@ -12,7 +11,6 @@ const CategoryProvider = (props) => {
             const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
             await axios.get(url).then((response) => {
                 const categoryDrinks = response.data.drinks;
-                console.log(categoryDrinks);
                 saveCategory(categoryDrinks);
             }).catch((error) => {
                 if (error.response) {

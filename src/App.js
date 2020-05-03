@@ -6,16 +6,16 @@ import RecipeProvider from './context/RecipeContext';
 
 function App() {
   return (
-    <CategoryProvider>
-      <RecipeProvider>
-      <Header/>
-        <div className="container mt-4">
+    <RecipeProvider>
+      <CategoryProvider>
+        <Header/>
+          <div className="container mt-4">
           <div className="row">
             <Form/>
           </div>
         </div>
-      </RecipeProvider>
-    </CategoryProvider>
+      </CategoryProvider>
+    </RecipeProvider>
   );
 }
 

@@ -4,14 +4,13 @@ import {RecipeContext} from '../context/RecipeContext';
 
 const Form = () => {
     const {category} = useContext(CategoryContext);
+    const {saveSearch, retrieveDataErrorSave} = useContext(RecipeContext);
+   
     const [searchByUser, saveSearchbyUser] = useState({
         ingredientName: "",
         category: ""
     });
-
-    const {saveSearch} = useContext(RecipeContext);
-    console.log('saveSearhFronReceiptContext', saveSearch);
-
+    
     const saveDataFromForm = e => {
         console.log(e.target.name, e.target.value);
         saveSearchbyUser(
@@ -21,7 +20,11 @@ const Form = () => {
     return (
         <form 
             className="col-12"
-            onSubmit={saveSearch(searchByUser)}>
+            onSubmit={e => {
+                e.preventDefault();
+                saveSearch(searchByUser);
+                retrieveDataErrorSave(true);
+            }}>
             <fieldset className="text-center"><legend>Search drinks per category/ingredient</legend></fieldset>
                 <div className="row mt-5">
                     <div className="col-md-4">
