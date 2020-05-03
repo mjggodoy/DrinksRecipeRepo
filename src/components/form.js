@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {CategoryContext} from '../context/CategoryContext';
 
 const Form = () => {
+
+    const {category} = useContext(CategoryContext);
+
     return (
         <form className="col-12">
             <fieldset className="text-center"><legend>Search drinks per category/ingredient</legend></fieldset>
