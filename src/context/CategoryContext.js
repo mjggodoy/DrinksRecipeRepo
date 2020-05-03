@@ -10,8 +10,9 @@ const CategoryProvider = (props) => {
     useEffect(() => {
         const getAllCategoriesFromApi = async() => {
             const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
-            const response = await axios.get(url).then((response) => {
+            await axios.get(url).then((response) => {
                 const categoryDrinks = response.data.drinks;
+                console.log(categoryDrinks);
                 saveCategory(categoryDrinks);
             }).catch((error) => {
                 if (error.response) {
@@ -31,7 +32,7 @@ const CategoryProvider = (props) => {
 
     return(
         <CategoryContext.Provider
-            value={category}
+            value={{category}}
         >
             {props.children}
         </CategoryContext.Provider>
