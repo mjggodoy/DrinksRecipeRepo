@@ -19,7 +19,6 @@ const RecipeProvider = (props) => {
                 const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}&c=${category}`;
                 await axios.get(url).then((response) => {
                     const recipes = response.data.drinks;
-                    console.log(recipes);
                     saveRecipe(recipes);
                 }).catch((error) => {
                     if (error.response) {
