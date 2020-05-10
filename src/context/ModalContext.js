@@ -11,10 +11,10 @@ const ModalProvider = (props) => {
 
     useEffect(() => {
         const retrieveRecipeById = async() => {
-            if (idrecipe !== undefined) {
                 const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idrecipe}`;
                 await axios.get(url).then((response) => {
                     const recipes = response.data.drinks[0];
+                    console.log(recipes);
                     saveRecipe(recipes);
                 }).catch((error) => {
                     if (error.response) {
@@ -28,10 +28,12 @@ const ModalProvider = (props) => {
                     }
                         console.error(error.config);
                     });
-            }
             
-        }   
-        retrieveRecipeById();
+        } 
+        if (idrecipe !== undefined) {
+            retrieveRecipeById();
+ 
+        }  
     }, [idrecipe]); 
 
     return(
