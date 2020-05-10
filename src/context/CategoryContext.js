@@ -26,7 +26,7 @@ const CategoryProvider = (props) => {
             });
         }
         getAllCategoriesFromApi();
-    }, [])
+    }, [category])
 
     return(
         <CategoryContext.Provider

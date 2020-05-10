@@ -6,7 +6,7 @@ const RecipeProvider = (props) => {
 
     const [recipe, saveRecipe] = useState([]);
     const [retrieveDataError, retrieveDataErrorSave] = useState(false);
-    const[search, saveSearch] = useState({
+    const [search, saveSearch] = useState({
         ingredient: "",
         category: ""
     });
