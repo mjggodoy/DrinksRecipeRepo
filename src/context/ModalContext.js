@@ -8,7 +8,6 @@ const ModalProvider = (props) => {
     const [idrecipe, saveIdRecipe] = useState();
     const [recipe, saveRecipe] = useState({});
 
-
     useEffect(() => {
         const retrieveRecipeById = async() => {
                 const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idrecipe}`;
@@ -32,7 +31,6 @@ const ModalProvider = (props) => {
         } 
         if (idrecipe !== undefined) {
             retrieveRecipeById();
- 
         }  
     }, [idrecipe]); 
 

@@ -63,9 +63,12 @@ const Recipe = ({recipe}) => {
                     </button>
                     <Modal
                         open = {open}
+                        onClose = {() =>{
+                            handleClose();
+                            saveIdRecipe('');
+                        }}
                     >
                         <div style={modalStyle} className={classes.paper}>
-
                             <h1>FROM MODAL</h1>
                         </div>
                     </Modal>
