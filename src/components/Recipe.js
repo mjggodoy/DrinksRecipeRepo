@@ -12,20 +12,23 @@ function getModalStyle() {
     const left = 50 + rand();
   
     return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
     };
   }
   
   const useStyles = makeStyles((theme) => ({
-    paper: {
-      position: 'absolute',
-      width: 370,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+    drinkStyle: {
+        position: 'relative',
+        overflow:'scroll',
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        display:'block',
+        height:'100%',
+        width: '50%',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
     },
   }));
 
@@ -44,6 +47,18 @@ const Recipe = ({recipe}) => {
       };
     
     const {recipeInfo, saveRecipeInfo, saveIdRecipe} = useContext(ModalContext);
+    const showIngredients = recipeInfo => {
+        let ingredients = [];
+        const ingredientsMaxTotalPerRecipe = 15;
+        if (Object.keys(recipeInfo).length !== 0) {
+            for (let ingredient = 0;  ingredient<ingredientsMaxTotalPerRecipe; ingredient++) {
+                if (recipeInfo[`strIngredient${ingredient}`]) {
+                    ingredients.push(<li key={ingredient}>{recipeInfo[`strIngredient${ingredient}`]} {recipeInfo[`strMeasure${ingredient}`]}</li>);
+                }
+            }
+        }
+        return ingredients; 
+    }
 
     return(
         <div className="col-md-4 mb-3">
@@ -66,16 +81,18 @@ const Recipe = ({recipe}) => {
                         onClose = {() =>{
                             handleClose();
                             saveRecipeInfo({});
-                            saveIdRecipe("");
+                            saveIdRecipe({});
                         }}
                     >
-                        <div style={modalStyle} className={classes.paper}>
+                        <div style={modalStyle} className={classes.drinkStyle}>
                             <h2>{recipeInfo.strDrink}</h2>
                             <h3 className="mt-4">Instructions</h3>
                             <p>
                                 {recipeInfo.strInstructions}
                             </p>
                             <img className="img-fluid my-4" src={recipeInfo.strDrinkThumb}/>
+                            <h3>Show ingredients:</h3>
+                            <ul>{showIngredients(recipeInfo)}</ul>
                         </div>
                     </Modal>
                 </div>
