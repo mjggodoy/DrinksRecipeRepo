@@ -21,7 +21,7 @@ function getModalStyle() {
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: 400,
+      width: 370,
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
@@ -43,7 +43,7 @@ const Recipe = ({recipe}) => {
         setOpen(false);
       };
     
-    const {saveIdRecipe} = useContext(ModalContext);
+    const {recipeInfo, saveRecipeInfo, saveIdRecipe} = useContext(ModalContext);
 
     return(
         <div className="col-md-4 mb-3">
@@ -65,11 +65,17 @@ const Recipe = ({recipe}) => {
                         open = {open}
                         onClose = {() =>{
                             handleClose();
-                            saveIdRecipe('');
+                            saveRecipeInfo({});
+                            saveIdRecipe("");
                         }}
                     >
                         <div style={modalStyle} className={classes.paper}>
-                            <h1>FROM MODAL</h1>
+                            <h2>{recipeInfo.strDrink}</h2>
+                            <h3 className="mt-4">Instructions</h3>
+                            <p>
+                                {recipeInfo.strInstructions}
+                            </p>
+                            <img className="img-fluid my-4" src={recipeInfo.strDrinkThumb}/>
                         </div>
                     </Modal>
                 </div>
